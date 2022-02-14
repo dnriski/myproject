@@ -17,17 +17,17 @@ exports.registerHandle = (req, res) => {
 
   //------------ Checking required fields ------------//
   if (!name || !email || !password || !password2) {
-    errors.push({ msg: "Please enter all fields" });
+    errors.push({ msg: "Isikan seluruh data" });
   }
 
-  //------------ Checking password mismatch ------------//
+  //--- Checking password mismatch --//
   if (password != password2) {
-    errors.push({ msg: "Passwords do not match" });
+    errors.push({ msg: "Password tidak sama" });
   }
 
-  //------------ Checking password length ------------//
+  //-- cek  length password--//
   if (password.length < 8) {
-    errors.push({ msg: "Password must be at least 8 characters" });
+    errors.push({ msg: "Password minimal 8 karakter" });
   }
 
   if (errors.length > 0) {
@@ -43,7 +43,7 @@ exports.registerHandle = (req, res) => {
     User.findOne({ email: email }).then((user) => {
       if (user) {
         //------------ User already exists ------------//
-        errors.push({ msg: "Email ID already registered" });
+        errors.push({ msg: "Email ID sudah terdaftar" });
         res.render("register", {
           errors,
           name,
@@ -89,13 +89,13 @@ exports.registerHandle = (req, res) => {
           },
         });
 
-        // send mail with defined transport object
+        // kirim mail
         const mailOptions = {
-          from: '"Tokopakedi" <nodejsa@gmail.com>', // sender address
-          to: email, // list of receivers
-          subject: "Account Verification: NodeJS Auth ✔", // Subject line
+          from: '"Tokopakedi" <nodejsa@gmail.com>',
+          to: email,
+          subject: "Account Verification: NodeJS Auth ✔",
           generateTextFromHTML: true,
-          html: output, // html body
+          html: output,
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
@@ -110,7 +110,7 @@ exports.registerHandle = (req, res) => {
             console.log("Mail sent : %s", info.response);
             req.flash(
               "success_msg",
-              "Activation link sent to email ID. Please activate to log in."
+              "Link aktivasi sudah dikirim ke email anda. Silahkan activasi untuk log in."
             );
             res.redirect("/auth/login");
           }
@@ -129,7 +129,7 @@ exports.activateHandle = (req, res) => {
       if (err) {
         req.flash(
           "error_msg",
-          "Incorrect or expired link! Please register again."
+          "Salah atau link sudah kadaluarsa! Tolong registrasi lagi."
         );
         res.redirect("/auth/register");
       } else {
@@ -137,10 +137,7 @@ exports.activateHandle = (req, res) => {
         User.findOne({ email: email }).then((user) => {
           if (user) {
             //------------ User already exists ------------//
-            req.flash(
-              "error_msg",
-              "Email ID already registered! Please log in."
-            );
+            req.flash("error_msg", "Email sudah terdaftar! Silahkan log in.");
             res.redirect("/auth/login");
           } else {
             const newUser = new User({
@@ -158,7 +155,7 @@ exports.activateHandle = (req, res) => {
                   .then((user) => {
                     req.flash(
                       "success_msg",
-                      "Account activated. You can now log in."
+                      "Akun anda sudah aktif. Kamu bisa login sekarang"
                     );
                     res.redirect("/auth/login");
                   })
@@ -170,7 +167,7 @@ exports.activateHandle = (req, res) => {
       }
     });
   } else {
-    console.log("Account activation error!");
+    console.log("Akun aktivasi error!");
   }
 };
 
@@ -182,7 +179,7 @@ exports.forgotPassword = (req, res) => {
 
   //------------ Checking required fields ------------//
   if (!email) {
-    errors.push({ msg: "Please enter an email ID" });
+    errors.push({ msg: "Silahkan masukkan email" });
   }
 
   if (errors.length > 0) {
@@ -194,7 +191,7 @@ exports.forgotPassword = (req, res) => {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         //------------ User already exists ------------//
-        errors.push({ msg: "User with Email ID does not exist!" });
+        errors.push({ msg: "User dengan Email ID tidak terdaftar!" });
         res.render("forgot", {
           errors,
           email,
@@ -217,7 +214,7 @@ exports.forgotPassword = (req, res) => {
         });
         const CLIENT_URL = "http://" + req.headers.host;
         const output = `
-                <h2>Please click on below link to reset your account password</h2>
+                <h2>Click link dibawah untuk reset password</h2>
                 <p>${CLIENT_URL}/auth/forgot/${token}</p>
                 <p><b>NOTE: </b> The activation link expires in 30 minutes.</p>
                 `;
@@ -264,7 +261,7 @@ exports.forgotPassword = (req, res) => {
                 console.log("Mail sent : %s", info.response);
                 req.flash(
                   "success_msg",
-                  "Password reset link sent to email ID. Please follow the instructions."
+                  "Link untuk reset password sudah terkirim. Silahkan ikuti instruksi."
                 );
                 res.redirect("/auth/login");
               }
@@ -283,16 +280,16 @@ exports.gotoReset = (req, res) => {
   if (token) {
     jwt.verify(token, JWT_RESET_KEY, (err, decodedToken) => {
       if (err) {
-        req.flash("error_msg", "Incorrect or expired link! Please try again.");
+        req.flash(
+          "error_msg",
+          "Salah atau link sudah kadaluarsa! Tolong registrasi lagi."
+        );
         res.redirect("/auth/login");
       } else {
         const { _id } = decodedToken;
         User.findById(_id, (err, user) => {
           if (err) {
-            req.flash(
-              "error_msg",
-              "User with email ID does not exist! Please try again."
-            );
+            req.flash("error_msg", "User dengan Email ID tidak terdaftar!");
             res.redirect("/auth/login");
           } else {
             res.redirect(`/auth/reset/${_id}`);
@@ -312,19 +309,19 @@ exports.resetPassword = (req, res) => {
 
   //------------ Checking required fields ------------//
   if (!password || !password2) {
-    req.flash("error_msg", "Please enter all fields.");
+    req.flash("error_msg", "Isikan semua data");
     res.redirect(`/auth/reset/${id}`);
   }
 
   //------------ Checking password length ------------//
   else if (password.length < 8) {
-    req.flash("error_msg", "Password must be at least 8 characters.");
+    req.flash("error_msg", "Password minimal 8 karakter");
     res.redirect(`/auth/reset/${id}`);
   }
 
   //------------ Checking password mismatch ------------//
   else if (password != password2) {
-    req.flash("error_msg", "Passwords do not match.");
+    req.flash("error_msg", "Password tidak sama");
     res.redirect(`/auth/reset/${id}`);
   } else {
     bcryptjs.genSalt(10, (err, salt) => {
@@ -340,7 +337,7 @@ exports.resetPassword = (req, res) => {
               req.flash("error_msg", "Error resetting password!");
               res.redirect(`/auth/reset/${id}`);
             } else {
-              req.flash("success_msg", "Password reset successfully!");
+              req.flash("success_msg", "Reset password sukses!");
               res.redirect("/auth/login");
             }
           }
