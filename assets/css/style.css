@@ -1,0 +1,287 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@900&display=swap&family=Zen+Maru+Gothic:wght@300;600;900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css");
+
+body {
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+
+.navbar {
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px rgb(157, 161, 157);
+}
+.navbar-brand {
+  font-family: "Source Code Pro", monospace;
+  font-weight: 900 !important;
+  color: rgb(6, 158, 57) !important;
+}
+
+.navbar-nav {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.jumbotron {
+  background-color: rgb(227, 243, 227);
+  height: 400px;
+  width: 100% !important;
+  margin-bottom: 0;
+  margin-top: 70px;
+}
+
+.display-4 {
+  font-weight: 600;
+  color: rgb(6, 158, 57);
+}
+
+.myfonts {
+  font-weight: 600;
+  color: rgb(6, 158, 57);
+}
+
+.mymargin {
+  min-height: 500px;
+}
+
+.addmargin {
+  margin-top: 100px;
+}
+
+.lead {
+  font-size: 15px;
+}
+
+.btn1 {
+  background-color: rgb(6, 158, 57);
+  color: white;
+  width: 100px;
+  font-weight: 700;
+}
+.btn1:hover {
+  background-color: white;
+  color: rgb(6, 158, 57);
+  border: 2px solid rgb(6, 158, 57);
+}
+
+.btn2 {
+  background-color: white;
+  color: rgb(6, 158, 57);
+  border: 2px solid rgb(6, 158, 57);
+  font-weight: 700;
+  width: 100px;
+}
+.btn2:hover {
+  background-color: rgb(6, 158, 57);
+  color: white;
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.btnwelcome {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 2px solid rgb(12, 14, 12);
+  font-weight: 700;
+  width: 500px;
+}
+.btnwelcome:hover {
+  background-color: rgb(8, 8, 8);
+  color: white;
+  border: 2px solid rgb(255, 255, 255);
+}
+.btnwelcome2 {
+  background-color: rgb(6, 158, 57);
+  color: white;
+  width: 500px;
+  font-weight: 700;
+}
+.btnwelcome2:hover {
+  background-color: white;
+  color: rgb(6, 158, 57);
+  border: 2px solid rgb(6, 158, 57);
+}
+
+.btn3 {
+  background-color: rgb(6, 158, 57);
+  color: white;
+  width: 180px;
+  font-weight: 700;
+}
+
+.bg {
+  margin-left: 50px;
+  width: 300px;
+  height: 300px;
+}
+
+.content2 {
+  font-family: "Source Code Pro", monospace;
+  font-weight: 900 !important;
+  color: rgb(6, 158, 57) !important;
+}
+
+.content3 {
+  margin-bottom: 120px;
+}
+
+.content4 {
+  margin-bottom: 120px;
+  font-weight: 700;
+  color: rgb(160, 160, 160);
+}
+
+.card {
+  box-shadow: 1px 1px 7px 1px rgb(6, 158, 57);
+}
+
+.cardlist {
+  box-shadow: 1px 1px 7px 1px rgb(6, 158, 57);
+}
+
+.card-title {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900 !important;
+  color: rgb(6, 158, 57) !important;
+}
+
+.cardbtn {
+  background-color: rgb(6, 158, 57);
+  color: white;
+  font-weight: 700;
+}
+
+.cardbtn:hover {
+  background-color: white; /* Green */
+  color: rgb(6, 158, 57);
+  border: 2px solid rgb(6, 158, 57);
+}
+
+.footer {
+  margin-top: 30px;
+  height: 300px;
+  background-color: rgb(6, 158, 57);
+}
+
+.info {
+  color: white;
+  font-weight: 700;
+}
+
+.end {
+  margin-top: 50px;
+  font-weight: 700;
+}
+
+.brdr {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.signup {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form {
+  font-family: "Source Code Pro", monospace;
+  color: rgb(6, 158, 57);
+}
+
+.login-form {
+  box-shadow: 1px 1px 7px 10px rgb(6, 158, 57);
+}
+.content-product {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+.btncarousel {
+  border: 0;
+  background-color: rgba(172, 172, 172, 0.158);
+}
+
+.main-product {
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.main-product > h1,
+h2 {
+  font-weight: 900;
+}
+.main-product > h2 {
+  color: rgb(6, 158, 57);
+}
+.repeat {
+  font-family: "Source Code Pro", monospace;
+  color: rgb(6, 158, 57);
+  font-weight: 600;
+}
+
+.list {
+  margin-top: 50px;
+}
+
+@media (max-width: 900px) {
+  .jumbotron {
+    padding-top: 60px;
+  }
+
+  .display-4 {
+    font-size: 40px;
+  }
+
+  .card {
+    margin-bottom: 50px;
+  }
+  .footer {
+    height: 600px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .navbar-toggler {
+    background-color: rgba(6, 158, 57, 0.24);
+    box-shadow: 1px 1px 5px 1px rgb(157, 161, 157);
+  }
+}
+
+@media (max-width: 800px) {
+  .bg {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .shadow {
+    margin-top: 70px;
+  }
+  .content-product {
+    margin-top: 100px;
+  }
+
+  .cardlist {
+    box-shadow: 0 0 0 0 !important;
+    border: 0 !important;
+  }
+  .btnlist {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  .cardbtn {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 368px) {
+  .cardbtn {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 468px) {
+  .btn1 {
+    margin-bottom: 8px;
+  }
+  .jumbotron {
+    height: 450px;
+  }
+}
