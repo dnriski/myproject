@@ -33,6 +33,12 @@ body {
   color: rgb(6, 158, 57);
 }
 
+.display-5 {
+  font-weight: 600;
+  font-size: 60px;
+  color: rgb(55, 22, 241);
+}
+
 .myfonts {
   font-weight: 600;
   color: rgb(6, 158, 57);

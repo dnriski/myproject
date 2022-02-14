@@ -1,3 +1,154 @@
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome <%= name %></p>
-<a href="/auth/logout" class="btn btn-secondary">Logout</a>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="display-4" id="judul"></h1>
+        <h1 class="display-5">@<%= name %></h1>
+        <p class="lead">
+          <i class="bi bi-hand-thumbs-up-fill" style="color: slateblue"></i
+          ><i class="bi bi-hand-thumbs-up-fill" style="color: slateblue"></i
+          ><i class="bi bi-hand-thumbs-up-fill" style="color: slateblue"></i
+          ><i class="bi bi-cart-fill" style="color: red"></i>
+        </p>
+        <hr class="my-4" />
+        <a class="btn btn-lg btn1 menu" href="#product" role="button"></a>
+        <a class="btn btn-lg btn2 menu" href="list" role="button"></a>
+      </div>
+      <div class="col">
+        <div class="bg">
+          <img src="/assets/img/bg.png" class="bg" alt="Trolley" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path
+    fill="rgb(227, 243, 227)"
+    fill-opacity="1"
+    d="M0,160L10,165.3C20,171,40,181,60,176C80,171,100,149,120,117.3C140,85,160,43,180,74.7C200,107,220,213,240,250.7C260,288,280,256,300,229.3C320,203,340,181,360,181.3C380,181,400,203,420,176C440,149,460,75,480,80C500,85,520,171,540,208C560,245,580,235,600,197.3C620,160,640,96,660,96C680,96,700,160,720,197.3C740,235,760,245,780,218.7C800,192,820,128,840,128C860,128,880,192,900,192C920,192,940,128,960,96C980,64,1000,64,1020,85.3C1040,107,1060,149,1080,186.7C1100,224,1120,256,1140,234.7C1160,213,1180,139,1200,96C1220,53,1240,43,1260,85.3C1280,128,1300,224,1320,234.7C1340,245,1360,171,1380,170.7C1400,171,1420,245,1430,282.7L1440,320L1440,0L1430,0C1420,0,1400,0,1380,0C1360,0,1340,0,1320,0C1300,0,1280,0,1260,0C1240,0,1220,0,1200,0C1180,0,1160,0,1140,0C1120,0,1100,0,1080,0C1060,0,1040,0,1020,0C1000,0,980,0,960,0C940,0,920,0,900,0C880,0,860,0,840,0C820,0,800,0,780,0C760,0,740,0,720,0C700,0,680,0,660,0C640,0,620,0,600,0C580,0,560,0,540,0C520,0,500,0,480,0C460,0,440,0,420,0C400,0,380,0,360,0C340,0,320,0,300,0C280,0,260,0,240,0C220,0,200,0,180,0C160,0,140,0,120,0C100,0,80,0,60,0C40,0,20,0,10,0L0,0Z"
+  ></path>
+</svg>
+<!--Akhhir Jumbotron-->
+<!--Content-->
+<section id="product" class="bg-light pb-4">
+  <div class="container">
+    <div class="row mb-4 pt-4">
+      <div class="col text-center">
+        <h2 class="content2"></h2>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md">
+        <div class="card">
+          <img
+            src="/assets/img/product1.jpg"
+            class="card-img-top"
+            alt="Shoes"
+          />
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <a href="shoes" class="btn cardbtn disabled"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card">
+          <img
+            src="/assets/img/product2.jpg"
+            class="card-img-top"
+            alt="Arloji"
+          />
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <a href="arloji" class="btn cardbtn disabled"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card">
+          <img
+            src="/assets/img/product3.png"
+            class="card-img-top"
+            alt="Jacket"
+          />
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <a href="jacket" class="btn cardbtn disabled"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md">
+        <div class="card">
+          <img
+            src="/assets/img/product4.jpg"
+            class="card-img-top"
+            alt="Necklace"
+          />
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <a href="necklace" class="btn cardbtn disabled"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card">
+          <img
+            src="/assets/img/product5.jpg"
+            class="card-img-top"
+            alt="Glasses"
+          />
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <a href="glasses" class="btn cardbtn disabled"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card">
+          <img src="/assets/img/product6.jpg" class="card-img-top" alt="Hat" />
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <a href="hat" class="btn cardbtn disabled"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Akhir Content-->
+<!--About-->
+<section class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="content2 mb-5"></h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-5 text-center">
+        <p class="about"></p>
+      </div>
+      <div class="col-md-5 text-center">
+        <p class="about"></p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-5 text-center">
+        <p class="about"></p>
+      </div>
+      <div class="col-md-5 text-center">
+        <p class="about"></p>
+      </div>
+    </div>
+  </div>
+</section>
