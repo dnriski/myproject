@@ -1,4 +1,3 @@
 //Menggunakan Mongodb sebagai database
-//untuk mengkoneksikan,
-//login menggunakan passport
-//jwt
+//untuk mengkoneksikan, ubah database di config > key
+//menggunakan passport dan jwt untuk authentikasi

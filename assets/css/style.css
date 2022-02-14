@@ -35,7 +35,7 @@ body {
 
 .display-5 {
   font-weight: 600;
-  font-size: 60px;
+  font-size: 50px;
   color: rgb(55, 22, 241);
 }
 
@@ -84,9 +84,9 @@ body {
 .btnwelcome {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  border: 2px solid rgb(12, 14, 12);
+  border: 2px solid rgb(30, 194, 30);
   font-weight: 700;
-  width: 500px;
+  width: 100;
 }
 .btnwelcome:hover {
   background-color: rgb(8, 8, 8);
@@ -96,7 +96,7 @@ body {
 .btnwelcome2 {
   background-color: rgb(6, 158, 57);
   color: white;
-  width: 500px;
+  width: 100%;
   font-weight: 700;
 }
 .btnwelcome2:hover {

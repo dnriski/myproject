@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 addmargin">
+      <h2 class="pb-4 text-center myfonts">Daftar Pelanggan</h2>
+      <a href="/contact/add" class="btn btn3 btn-sm btn-success mb-3 text-left"
+        >Tambah Data Pelanggan</a
+      >
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nama</th>
+            <th scope="col">No Hp</th>
+            <th scope="col" class="text-center">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% contacts.forEach((contact, i )=> { i++ %>
+          <tr>
+            <th scope="row"><%= i++ %></th>
+            <td><%= contact.nama %></td>
+            <td><%= contact.nohp %></td>
+            <td class="text-center">
+              <a
+                href="/contact/<%= contact.nama %> "
+                class="btn btn-success badge rounded-pill"
+                ><i class="bi bi-info-circle"></i> Detail</a
+              >
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
