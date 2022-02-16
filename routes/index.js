@@ -17,4 +17,5 @@ router.get("/dashboard", ensureAuthenticated, (req, res) =>
 router.get("/contact", (req, res) => {
   res.render("contact/contact");
 });
+
 module.exports = router;

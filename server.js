@@ -1,57 +1,63 @@
-const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
-const mongoose = require('mongoose');
-const flash = require('connect-flash');
-const session = require('express-session');
-const passport = require('passport');
+const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+const mongoose = require("mongoose");
+const flash = require("connect-flash");
+const session = require("express-session");
+const passport = require("passport");
+const bodyParser = require("body-parser");
 
+const { body, validationResult, check } = require("express-validator");
+const methodOverride = require("method-override");
+const cookieParser = require("cookie-parser");
+
+const db = require("./config/key").MongoURI;
+
+const { result } = require("lodash");
 const app = express();
 
-//------------ Passport Configuration ------------//
-require('./config/passport')(passport);
+app.use(methodOverride("_method"));
 
-//------------ DB Configuration ------------//
-const db = require('./config/key').MongoURI;
+require("./config/passport")(passport);
 
-//------------ Mongo Connection ------------//
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-    .then(() => console.log("Successfully connected to MongoDB"))
-    .catch(err => console.log(err));
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log("Successfully connected to MongoDB"))
+  .catch((err) => console.log(err));
 
-//------------ EJS Configuration ------------//
 app.use(expressLayouts);
-app.use("/assets", express.static('./assets'));
-app.set('view engine', 'ejs');
+app.use("/assets", express.static("./assets"));
+app.set("view engine", "ejs");
 
-//------------ Bodyparser Configuration ------------//
-app.use(express.urlencoded({ extended: false }))
-
-//------------ Express session Configuration ------------//
+//konfigurasi flash
+app.use(cookieParser("secret"));
 app.use(
-    session({
-        secret: 'secret',
-        resave: true,
-        saveUninitialized: true
-    })
+  session({
+    cookie: { maxAge: 6000 },
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
 );
+app.use(flash());
 
-//------------ Passport Middlewares ------------//
+app.use(express.urlencoded({ extended: true }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-//------------ Connecting flash ------------//
-app.use(flash());
-
-//------------ Global variables ------------//
-app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
   next();
 });
-//------------ Routes ------------//
-app.use('/', require('./routes/index'));
-app.use('/auth', require('./routes/auth'));
+
+app.use("/", require("./routes/index"));
+app.use("/auth", require("./routes/auth"));
 
 const PORT = process.env.PORT || 3006;
 
