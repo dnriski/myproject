@@ -7,25 +7,20 @@ const jwt = require("jsonwebtoken");
 const JWT_KEY = "jwtactive987";
 const JWT_RESET_KEY = "jwtreset987";
 
-//------------ User Model ------------//
 const User = require("../models/User");
 
-//------------ Register Handle ------------//
 exports.registerHandle = (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
 
-  //------------ Checking required fields ------------//
   if (!name || !email || !password || !password2) {
     errors.push({ msg: "Isikan seluruh data" });
   }
 
-  //--- Checking password mismatch --//
   if (password != password2) {
     errors.push({ msg: "Password tidak sama" });
   }
 
-  //-- cek  length password--//
   if (password.length < 8) {
     errors.push({ msg: "Password minimal 8 karakter" });
   }
@@ -39,10 +34,8 @@ exports.registerHandle = (req, res) => {
       password2,
     });
   } else {
-    //------------ Validation passed ------------//
     User.findOne({ email: email }).then((user) => {
       if (user) {
-        //------------ User already exists ------------//
         errors.push({ msg: "Email ID sudah terdaftar" });
         res.render("register", {
           errors,
@@ -65,14 +58,14 @@ exports.registerHandle = (req, res) => {
         const accessToken = oauth2Client.getAccessToken();
 
         const token = jwt.sign({ name, email, password }, JWT_KEY, {
-          expiresIn: "30m",
+          expiresIn: "300m",
         });
         const CLIENT_URL = "http://" + req.headers.host;
 
         const output = `
                 <h2>Please click on below link to activate your account</h2>
                 <p>${CLIENT_URL}/auth/activate/${token}</p>
-                <p><b>NOTE: </b> The above activation link expires in 30 minutes.</p>
+                <p><b>NOTE: </b> The above activation link expires in 300 minutes.</p>
                 `;
 
         const transporter = nodemailer.createTransport({
@@ -120,7 +113,6 @@ exports.registerHandle = (req, res) => {
   }
 };
 
-//------------ Activate Account Handle ------------//
 exports.activateHandle = (req, res) => {
   const token = req.params.token;
   let errors = [];
@@ -136,7 +128,6 @@ exports.activateHandle = (req, res) => {
         const { name, email, password } = decodedToken;
         User.findOne({ email: email }).then((user) => {
           if (user) {
-            //------------ User already exists ------------//
             req.flash("error_msg", "Email sudah terdaftar! Silahkan log in.");
             res.redirect("/auth/login");
           } else {
@@ -171,13 +162,11 @@ exports.activateHandle = (req, res) => {
   }
 };
 
-//------------ Forgot Password Handle ------------//
 exports.forgotPassword = (req, res) => {
   const { email } = req.body;
 
   let errors = [];
 
-  //------------ Checking required fields ------------//
   if (!email) {
     errors.push({ msg: "Silahkan masukkan email" });
   }
@@ -190,7 +179,6 @@ exports.forgotPassword = (req, res) => {
   } else {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        //------------ User already exists ------------//
         errors.push({ msg: "User dengan Email ID tidak terdaftar!" });
         res.render("forgot", {
           errors,
@@ -241,7 +229,6 @@ exports.forgotPassword = (req, res) => {
               },
             });
 
-            // send mail with defined transport object
             const mailOptions = {
               from: '"Tokopakedi" <nodejsa@gmail.com>', // sender address
               to: email, // list of receivers
@@ -273,7 +260,6 @@ exports.forgotPassword = (req, res) => {
   }
 };
 
-//------------ Redirect to Reset Handle ------------//
 exports.gotoReset = (req, res) => {
   const { token } = req.params;
 
@@ -307,20 +293,13 @@ exports.resetPassword = (req, res) => {
   const id = req.params.id;
   let errors = [];
 
-  //------------ Checking required fields ------------//
   if (!password || !password2) {
     req.flash("error_msg", "Isikan semua data");
     res.redirect(`/auth/reset/${id}`);
-  }
-
-  //------------ Checking password length ------------//
-  else if (password.length < 8) {
+  } else if (password.length < 8) {
     req.flash("error_msg", "Password minimal 8 karakter");
     res.redirect(`/auth/reset/${id}`);
-  }
-
-  //------------ Checking password mismatch ------------//
-  else if (password != password2) {
+  } else if (password != password2) {
     req.flash("error_msg", "Password tidak sama");
     res.redirect(`/auth/reset/${id}`);
   } else {
@@ -347,7 +326,6 @@ exports.resetPassword = (req, res) => {
   }
 };
 
-//------------ Login Handle ------------//
 exports.loginHandle = (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/dashboard",
@@ -356,7 +334,6 @@ exports.loginHandle = (req, res, next) => {
   })(req, res, next);
 };
 
-//------------ Logout Handle ------------//
 exports.logoutHandle = (req, res) => {
   req.logout();
   req.flash("success_msg", "You are logged out");

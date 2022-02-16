@@ -44,7 +44,7 @@ app.use(
 );
 app.use(flash());
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
